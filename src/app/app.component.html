@@ -1,0 +1,46 @@
+{{title}}
+
+<div *ngFor="let user of users">
+  <p *ngIf="user.age > 20">{{user.firstname}} {{user.lastname}} - {{user.age}}</p>
+</div>
+
+<app-user (ChildUserEmitter)="getChild($event)"></app-user>
+
+<h1>Array from child component</h1>
+<div *ngFor="let child of receivedChildUsers">
+  <p>{{child.Firstname}} {{child.Lastname}} {{child.DateOfBirth}}</p>
+</div>
+
+<form (FormGroup)="userForm" ngSubmit="onSubmit()" novalidate>
+  <div>
+    <label for="Firstname">First Name</label>
+    <input id="Firstname" formControlName="Firstname">
+    <p *ngIf="userForm.get('Firstname')?.invalid && userForm.get('Firstname')?.touched">Must be at least 3 characters long</p>
+  </div>
+
+  <div>
+    <label for="Lastname">Last Name</label>
+    <input id="Lastname" formControlName="Lastname">
+    <p *ngIf="userForm.get('Lastname')?.invalid && userForm.get('Lastname')?.touched">Must be at least 3 characters long</p>
+  </div>
+
+  <div>
+    <label for="PhoneNumber">Phone Number</label>
+    <input id="PhoneNumber" formControlName="PhoneNumber">
+    <p *ngIf="userForm.get('PhoneNumber')?.invalid && userForm.get('PhoneNumber')?.touched">Must be at least 9 characters long</p>
+  </div>
+
+  <div>
+    <label for="Email">Email</label>
+    <input id="Email" formControlName="Email">
+    <div *ngIf="userForm.get('Email')?.invalid && userForm.get('Email')?.touched">Must be at least 9 characters long</div>
+  </div>
+
+  <div>
+    <label for="DateOfBirth">Date Of Birth</label>
+    <input id="DateOfBirth" formControlName="DateOfBirth">
+    <div *ngIf="userForm.get('DateOfBirth')?.invalid && userForm.get('DateOfBirth')?.touched">Required</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" disabled="*ngIf='userForm?.invalid'">Submit</button>
+</form>

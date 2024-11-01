@@ -1,0 +1,8 @@
+<h1>Array from parent component</h1>
+
+<div *ngFor="let user of parentUsers">
+    <p>{{user.Id}}) {{user.Firstname}} {{user.Lastname}} {{user.DateOfBirth}} {{user.Email}} {{user.PhoneNumber}}</p>
+</div>
+
+<button (click)="passChildUsers()">Emit child</button>
+<button (click)="displayArrays()">Display on Console</button>
